@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: http://localhost:3000/sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /user/
+Disallow: /login
+Disallow: /signup
+
+# Allow public pages
+Allow: /
+Allow: /products
+Allow: /cart
+Allow: /wishlist
+Allow: /checkout 

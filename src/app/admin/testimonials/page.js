@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AdminTestimonials() {
   const router = useRouter();
@@ -298,10 +299,12 @@ export default function AdminTestimonials() {
                 {testimonials.map((testimonial) => (
                   <tr key={testimonial._id} className="border-t border-border hover:bg-muted/30">
                     <td className="p-4">
-                      <img
+                      <Image
                         src={testimonial.avatar}
                         alt={testimonial.name}
                         className="w-12 h-12 rounded-full object-cover"
+                        height={48}
+                        width={48}
                         onError={(e) => {
                           e.target.src = '/team-member-icon.jpg';
                         }}

@@ -69,7 +69,7 @@ function BlogCarousel() {
             className="min-w-[260px] max-w-xs bg-card rounded-lg shadow hover:shadow-lg transition p-4 flex-1 cursor-pointer group"
           >
             {blog.image && (
-              <img src={blog.image} alt={blog.title} className="w-full h-40 object-cover rounded mb-3" />
+              <Image src={blog.image} alt={blog.title} height={300} width={300} className="w-full h-40 object-cover rounded mb-3" />
             )}
             <h3 className="text-xl font-semibold mb-1 line-clamp-1 group-hover:text-primary transition-colors">{blog.title}</h3>
             <p className="text-muted-foreground mb-1 text-sm">By {blog.author} on {new Date(blog.createdAt).toLocaleDateString()}</p>
@@ -144,7 +144,7 @@ function LatestDeals({ products }) {
             Latest Deals & Offers
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Don't miss out on these amazing deals! Limited time offers on premium fashion items.
+            Dont miss out on these amazing deals! Limited time offers on premium fashion items.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -313,11 +313,13 @@ function TestimonialsSection() {
                     ))}
                   </div>
                 </div>
-                <p className="text-muted-foreground mb-4 italic">"{testimonial.content}"</p>
+                <p className="text-muted-foreground mb-4 italic">{testimonial.content}</p>
                 <div className="flex items-center">
-                  <img 
+                  <Image
                     src={testimonial.avatar} 
                     alt={testimonial.name}
+                    height={100}
+                    width={100}
                     className="w-12 h-12 rounded-full object-cover mr-3"
                     onError={(e) => {
                       e.target.src = '/team-member-icon.jpg';
@@ -443,7 +445,7 @@ function BrandShowcase() {
             Trusted Brands
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We partner with the world's leading fashion brands to bring you the best quality products.
+            We partner with the worlds leading fashion brands to bring you the best quality products.
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -451,9 +453,11 @@ function BrandShowcase() {
             <div key={index} className="group bg-background rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 border border-border/50">
               <div className="flex flex-col items-center space-y-3">
                 <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center p-3 shadow-sm group-hover:shadow-md transition-shadow relative">
-                  <img 
+                  <Image 
                     src={brand.logo} 
                     alt={`${brand.name} logo`}
+                    height={100}
+                    width={100}
                     className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
                     onError={(e) => {
                       e.target.style.display = 'none';

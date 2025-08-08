@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
+import Image from "next/image";
 
 export default function EditBlogPage() {
   const { slug } = useParams();
@@ -88,7 +89,7 @@ export default function EditBlogPage() {
               {uploading && <p className="text-muted-foreground text-sm mt-1">Uploading...</p>}
               {image && (
                 <div className="mt-2">
-                  <img src={image} alt="Preview" className="h-32 rounded-lg border object-cover" />
+                  <Image src={image} alt="Preview" className="h-32 rounded-lg border object-cover" width={500} height={500} />
                 </div>
               )}
             </div>

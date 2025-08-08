@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import ProductCard from "../../../components/ProductCard";
+import Image from "next/image";
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
@@ -53,7 +54,7 @@ export default function SearchPage() {
     <div className="min-h-screen bg-background py-16">
       <div className="container-responsive max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-8 text-center">
-          Search results for "{query}"
+          Search results for {query}
         </h1>
         {loading ? (
           <p className="text-center">Loading...</p>
@@ -80,7 +81,7 @@ export default function SearchPage() {
                   {blogs.map((blog) => (
                     <Link key={blog.slug} href={`/blogs/${blog.slug}`} className="block bg-card rounded-lg shadow hover:shadow-lg transition p-6">
                       {blog.image && (
-                        <img src={blog.image} alt={blog.title} className="w-full h-40 object-cover rounded mb-4" />
+                        <Image  src={blog.image} height={500} width={500} alt={blog.title} className="w-full h-40 object-cover rounded mb-4" />
                       )}
                       <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
                       <p className="text-muted-foreground mb-2">By {blog.author} on {new Date(blog.createdAt).toLocaleDateString()}</p>

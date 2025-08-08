@@ -1,18 +1,21 @@
+import Image from "next/image";
+import Link from "next/link";
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background w-full pb-12">
       {/* Banner Section */}
       <section className="relative overflow-hidden pt-40 pb-40">
-        <img src="/about-banner.jpg" alt="About Banner" className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
+        <Image src="/about-banner.jpg" alt="About Banner" className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
         <div className="container-responsive relative z-20 py-36 flex flex-col items-center justify-center text-center">
           {/* Breadcrumb on banner */}
           <nav className="flex items-center gap-3 text-lg text-black mb-8 drop-shadow font-semibold">
-            <a href="/" className="flex items-center hover:underline">
+            <Link href="/" className="flex items-center hover:underline">
               <svg className="w-6 h-6 mr-2 " fill="currentColor" viewBox="0 0 24 24">
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               </svg>
-            </a>
+            </Link>
             <span>/</span>
             <span className="font-bold">About</span>
           </nav>
@@ -56,7 +59,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           <div className="bg-card rounded-xl shadow p-6 flex flex-col items-center">
             <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-4 overflow-hidden">
-              <img src="/team-member-icon.jpg" alt="Team Member Icon" className="w-14 h-14 object-contain" />
+              <Image src="/team-member-icon.jpg" alt="Team Member Icon" className="w-14 h-14 object-contain" />
             </div>
             <h4 className="text-lg font-semibold">John</h4>
             <p className="text-muted-foreground mb-2">Founder & CEO</p>
@@ -64,7 +67,7 @@ export default function AboutPage() {
           </div>
           <div className="bg-card rounded-xl shadow p-6 flex flex-col items-center">
             <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-4 overflow-hidden">
-              <img src="/team-member-icon.jpg" alt="Team Member Icon" className="w-14 h-14 object-contain" />
+              <Image src="/team-member-icon.jpg" alt="Team Member Icon" className="w-14 h-14 object-contain" height={100} width={100}/>
             </div>
             <h4 className="text-lg font-semibold">John</h4>
             <p className="text-muted-foreground mb-2">Head of Design</p>
@@ -72,7 +75,7 @@ export default function AboutPage() {
           </div>
           <div className="bg-card rounded-xl shadow p-6 flex flex-col items-center">
             <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-4 overflow-hidden">
-              <img src="/team-member-icon.jpg" alt="Team Member Icon" className="w-14 h-14 object-contain" />
+              <Image src="/team-member-icon.jpg" alt="Team Member Icon" className="w-14 h-14 object-contain" height={100} width={100} />
             </div>
             <h4 className="text-lg font-semibold">John</h4>
             <p className="text-muted-foreground mb-2">Customer Success</p>
@@ -114,7 +117,7 @@ export default function AboutPage() {
         <div className="bg-blue-400 rounded-2xl py-12 px-8 shadow-lg mt-20">
           <h2 className="text-3xl font-bold text-white mb-4">Join Our Fashion Journey</h2>
           <p className="text-white/90 mb-6">Discover the latest trends, enjoy exclusive offers, and be part of our vibrant community.</p>
-          <a href="/products" className="inline-block px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-white/90 transition-colors btn-hover text-lg">Shop Now</a>
+          <Link href="/products" className="inline-block px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-white/90 transition-colors btn-hover text-lg">Shop Now</Link>
         </div>
       </section>
     </div>

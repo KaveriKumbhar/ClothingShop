@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useRouter, useParams } from "next/navigation";
+import Image from "next/image";
 
 export default function AddOrEditProductPage() {
   const params = useParams();
@@ -122,7 +123,7 @@ export default function AddOrEditProductPage() {
           disabled={uploading}
         />
         {imagePreview && (
-          <img src={imagePreview} alt="Preview" className="w-32 h-32 object-cover rounded border mx-auto" />
+          <Image src={imagePreview} height={200} width={200} alt="Preview" className="w-32 h-32 object-cover rounded border mx-auto" />
         )}
         <select name="category" value={form.category} onChange={handleChange} className="border p-2 rounded" required>
           <option value="">Select Category</option>

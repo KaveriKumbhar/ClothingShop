@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AdminBlogsPage() {
   const [blogs, setBlogs] = useState([]);
@@ -63,7 +64,7 @@ export default function AdminBlogsPage() {
               <tr key={blog.slug} className="border-b">
                 <td className="p-2">
                   {blog.image ? (
-                    <img src={blog.image} alt={blog.title} className="h-12 w-20 object-cover rounded border" />
+                    <Image src={blog.image} alt={blog.title} className="h-12 w-20 object-cover rounded border" height={48} width={80} />
                   ) : (
                     <span className="text-muted-foreground text-xs">No image</span>
                   )}

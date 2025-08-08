@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function UserWishlistPage() {
   const [wishlist, setWishlist] = useState([]);
@@ -81,9 +82,11 @@ export default function UserWishlistPage() {
           {wishlist.map((product) => (
             <div key={product._id} className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="relative">
-                <img
+                <Image
                   src={product.image?.startsWith("/") || product.image?.startsWith("http") ? product.image : "/default.jpg"}
                   alt={product.name}
+                  width={300}
+                  height={300}
                   className="w-full h-48 object-cover"
                 />
                 <button

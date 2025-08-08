@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AdminOrders() {
   const router = useRouter();
@@ -224,9 +225,11 @@ export default function AdminOrders() {
                 <div className="space-y-3 mb-4">
                   {order.items.map((item, index) => (
                     <div key={index} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
-                      <img 
+                      <Image
                         src={item.product.image} 
                         alt={item.product.name}
+                        height={64}
+                        width={64}
                         className="w-16 h-16 object-cover rounded-lg"
                       />
                       <div className="flex-1">

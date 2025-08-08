@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function AddBlogPage() {
   const [title, setTitle] = useState("");
@@ -76,7 +77,7 @@ export default function AddBlogPage() {
               {uploading && <p className="text-muted-foreground text-sm mt-1">Uploading...</p>}
               {image && (
                 <div className="mt-2">
-                  <img src={image} alt="Preview" className="h-32 rounded-lg border object-cover" />
+                  <Image src={image} alt="Preview" className="h-32 rounded-lg border object-cover" height={200} width={200}/>
                 </div>
               )}
             </div>

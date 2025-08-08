@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function ContactPage() {
   const [name, setName] = useState("");
@@ -39,16 +41,16 @@ export default function ContactPage() {
     <div className="min-h-screen bg-background w-full">
       {/* Banner Section */}
       <section className="relative overflow-hidden pt-24 pb-24">
-        <img src="/banner-fashion.jpg" alt="Contact Banner" className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
+        <Image src="/banner-fashion.jpg" alt="Contact Banner" height={700} width={1200} className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
         <div className="container-responsive relative z-20 py-36 flex flex-col items-center justify-center text-center">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-3 text-lg text-white/90 mb-8 drop-shadow font-semibold">
-            <a href="/" className="flex items-center hover:underline">
+            <Link href="/" className="flex items-center hover:underline">
               <svg className="w-6 h-6 mr-2 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               </svg>
-            </a>
+            </Link>
             <span>/</span>
             <span className="font-bold">Contact</span>
           </nav>

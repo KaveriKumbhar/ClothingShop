@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function UserOrders() {
   const [orders, setOrders] = useState([]);
@@ -116,7 +117,7 @@ export default function UserOrders() {
         <div className="text-center py-12">
           <div className="text-6xl mb-4">📦</div>
           <h2 className="text-2xl font-semibold text-gray-600 mb-2">No Orders Yet</h2>
-          <p className="text-gray-500 mb-6">You haven't placed any orders yet.</p>
+          <p className="text-gray-500 mb-6">You have not placed any orders yet.</p>
           <Link 
             href="/products" 
             className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors"
@@ -150,7 +151,7 @@ export default function UserOrders() {
                 <div className="space-y-3">
                   {order.items.map((item, index) => (
                     <div key={index} className="flex items-center gap-4 p-3 bg-background rounded-lg">
-                      <img 
+                      <Image
                         src={item.product.image} 
                         alt={item.product.name}
                         className="w-16 h-16 object-cover rounded-lg"

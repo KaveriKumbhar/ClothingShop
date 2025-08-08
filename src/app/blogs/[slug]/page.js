@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function BlogDetailPage() {
   const { slug } = useParams();
@@ -29,7 +31,7 @@ export default function BlogDetailPage() {
     <div className="min-h-screen bg-background">
       {/* Banner Section */}
       {/* <section className="relative overflow-hidden pt-36 pb-36">
-        <img src="/blogs-banner.jpg" alt="Blogs Banner" className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
+        <Image src="/blogs-banner.jpg" alt="Blogs Banner" className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
         <div className="container-responsive relative z-20 py-36 flex flex-col items-center justify-center text-center">
           <h1 className="text-5xl font-bold text-white mb-4 drop-shadow line-clamp-2">{blog.title}</h1>
@@ -37,33 +39,34 @@ export default function BlogDetailPage() {
         </div>
       </section> */}
       <section className="relative overflow-hidden pt-36 pb-36">
-        <img src="/blogs-banner.jpg" alt="Blogs Banner" className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
+        <Image src="/blogs-banner.jpg" alt="Blogs Banner" height={700} width={1200} className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
         <div className="container-responsive relative z-20 py-36 flex flex-col items-center justify-center text-center">
           {/* Breadcrumb on banner */}
           <nav className="flex items-center gap-3 text-lg text-black mb-8 drop-shadow font-semibold">
-            <a href="/" className="flex items-center hover:underline">
+            <Link href="/" className="flex items-center hover:underline">
               <svg className="w-6 h-6 mr-2 " fill="currentColor" viewBox="0 0 24 24">
-                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
               </svg>
-            </a>
+            </Link>
             <span>/</span>
-            <a href="/blogs" className="hover:underline">Blogs</a>
+            <Link href="/blogs" className="hover:underline">Blogs</Link>
             <span>/</span>
             <span className="font-bold line-clamp-1">{blog.title}</span>
           </nav>
           <h1 className="text-5xl font-bold text-white mb-4 drop-shadow line-clamp-2">{blog.title}</h1>
           <p className="text-lg text-white/90 max-w-2xl mx-auto drop-shadow mb-2">By {blog.author} on {new Date(blog.createdAt).toLocaleDateString()}</p>
           <p className="text-lg text-white/90 max-w-2xl mx-auto mb-6 drop-shadow">
-            Explore the latest news, style tips, and stories from the world of fashion. Stay inspired and discover what's trending!
+            Explore the latest news, style tips, and stories from the world of fashion. Stay inspired and discover what&apos;s trending!
           </p>
+
         </div>
       </section>
       {/* Breadcrumb */}
       {/* <nav className="container-responsive max-w-2xl mx-auto flex items-center gap-2 text-sm text-muted-foreground mb-8">
-        <a href="/" className="hover:underline">Home</a>
+        <Link href="/" className="hover:underline">Home</Link>
         <span>/</span>
-        <a href="/blogs" className="hover:underline">Blogs</a>
+        <Link href="/blogs" className="hover:underline">Blogs</Link>
         <span>/</span>
         <span className="text-card-foreground font-semibold line-clamp-1">{blog.title}</span>
       </nav> */}
@@ -72,7 +75,7 @@ export default function BlogDetailPage() {
           {/* Small avatar-style image */}
           {/* {blog.image && (
             <div className="flex justify-center pt-8">
-              <img src={blog.image} alt={blog.title} className="w-20 h-20 rounded-full object-cover object-center border-4 border-primary/20 shadow" />
+              <Image src={blog.image} alt={blog.title} className="w-20 h-20 rounded-full object-cover object-center border-4 border-primary/20 shadow" />
             </div>
           )} */}
           <div className="p-8">
@@ -81,7 +84,7 @@ export default function BlogDetailPage() {
             {/* Full-width image */}
             {blog.image && (
               <div className="w-full rounded-xl overflow-hidden mb-8 mt-4 shadow">
-                <img src={blog.image} alt={blog.title} className="w-full h-80 object-cover object-center" />
+                <Image src={blog.image} alt={blog.title} height={500} width={800} className="w-full h-80 object-cover object-center" />
               </div>
             )}
             <div className="prose max-w-none text-lg text-black/90 mx-auto">

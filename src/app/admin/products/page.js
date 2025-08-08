@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import useProducts from "../../../../hooks/useProducts";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 export default function AdminProductsPage() {
   const { products, loading, error } = useProducts();
@@ -66,7 +67,7 @@ export default function AdminProductsPage() {
                 <td className="p-2">{product.name}</td>
                 <td className="p-2">₹{product.price}</td>
                 <td className="p-2">
-                  <img src={product.image?.startsWith("/") || product.image?.startsWith("http") ? product.image : "/default.jpg"} alt={product.name} className="h-12 w-12 object-cover rounded" />
+                  <Image  src={product.image?.startsWith("/") || product.image?.startsWith("http") ? product.image : "/default.jpg"}  height={100} width={100} alt={product.name} className="h-12 w-12 object-cover rounded" />
                 </td>
                 <td className="p-2">{product.category}</td>
                 <td className="p-2 flex gap-2">

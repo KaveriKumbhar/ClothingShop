@@ -16,7 +16,7 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
     setLoading(true);
-    
+
     try {
       const result = await login(email, password);
       if (result.success) {
@@ -121,12 +121,19 @@ export default function LoginPage() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-muted-foreground">
+            {/* <p className="text-sm text-muted-foreground">
               Don't have an account?{" "}
               <Link href="/signup" className="text-primary hover:text-primary/80 font-medium transition-colors">
                 Sign up
               </Link>
+            </p> */}
+            <p className="text-sm text-muted-foreground">
+              Don&apos;t have an account?{" "}
+              <Link href="/signup" className="text-primary hover:text-primary/80 font-medium transition-colors">
+                Sign up
+              </Link>
             </p>
+
           </div>
 
           {/* Demo Credentials */}

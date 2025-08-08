@@ -4,6 +4,8 @@ import { useState, useMemo } from "react";
 import ProductCard from "../../../components/ProductCard";
 import useProducts from "../../../hooks/useProducts";
 import useCategories from "../../../hooks/useCategories";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function ProductsPage() {
   const { products, loading: productsLoading, error: productsError } = useProducts();
@@ -53,16 +55,16 @@ export default function ProductsPage() {
     <div className="min-h-screen bg-background">
       {/* Banner Section */}
       <section className="relative overflow-hidden pt-40 pb-40">
-        <img src="/product-banner.jpg" alt="Products Banner" className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
+        <Image src="/product-banner.jpg" height={700} width={1200} alt="Products Banner" className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
         <div className="container-responsive relative z-20 py-36 flex flex-col items-center justify-center text-center">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-3 text-lg text-black mb-8 drop-shadow font-semibold">
-            <a href="/" className="flex items-center hover:underline">
+            <Link href="/" className="flex items-center hover:underline">
               <svg className="w-6 h-6 mr-2 " fill="currentColor" viewBox="0 0 24 24">
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               </svg>
-            </a>
+            </Link>
             <span>/</span>
             <span className="font-bold">Products</span>
           </nav>

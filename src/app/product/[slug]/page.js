@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ProductDetail() {
   const params = useParams();
@@ -55,40 +56,41 @@ export default function ProductDetail() {
     }
   }, [params.slug, router]);
 
-  useEffect(() => {
-    if (product && user) {
-      checkWishlistStatus();
-      checkCartStatus();
-    }
-  }, [product, user]);
-
-  const checkWishlistStatus = async () => {
-    try {
-      const res = await fetch('/api/wishlist');
-      const data = await res.json();
-      if (data.items && Array.isArray(data.items)) {
-        const isWishlisted = data.items.some(item => item.product._id === product._id);
-        setIsInWishlist(isWishlisted);
+ useEffect(() => {
+  if (product && user) {
+    const checkWishlistStatus = async () => {
+      try {
+        const res = await fetch('/api/wishlist');
+        const data = await res.json();
+        if (data.items && Array.isArray(data.items)) {
+          const isWishlisted = data.items.some(item => item.product._id === product._id);
+          setIsInWishlist(isWishlisted);
+        }
+      } catch (error) {
+        console.error('Error checking wishlist status:', error);
       }
-    } catch (error) {
-      console.error('Error checking wishlist status:', error);
-    }
-  };
+    };
 
-  const checkCartStatus = async () => {
-    try {
-      const res = await fetch('/api/cart');
-      const data = await res.json();
-      if (data.items && Array.isArray(data.items)) {
-        const cartItem = data.items.find(item => item.product._id === product._id);
-        setIsInCart(!!cartItem);
-        setCartQuantity(cartItem ? cartItem.quantity : 0);
+    const checkCartStatus = async () => {
+      try {
+        const res = await fetch('/api/cart');
+        const data = await res.json();
+        if (data.items && Array.isArray(data.items)) {
+          const cartItem = data.items.find(item => item.product._id === product._id);
+          setIsInCart(!!cartItem);
+          setCartQuantity(cartItem ? cartItem.quantity : 0);
+        }
+      } catch (error) {
+        console.error('Error checking cart status:', error);
       }
-    } catch (error) {
-      console.error('Error checking cart status:', error);
-    }
-  };
+    };
 
+    checkWishlistStatus();
+    checkCartStatus();
+  }
+}, [product, user]);
+
+ 
   const addToWishlist = async () => {
     if (!user) {
       router.push('/login');
@@ -199,18 +201,18 @@ export default function ProductDetail() {
     <div className="min-h-screen bg-background">
       {/* Banner Section */}
       <section className="relative overflow-hidden pt-40 pb-40">
-        <img src="/product-banner.jpg" alt="Product Banner" className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
+        <Image src="/product-banner.jpg" height={700} width={1200} alt="Product Banner" className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
         <div className="container-responsive relative z-20 py-36 flex flex-col items-center justify-center text-center">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-3 text-lg text-black mb-8 drop-shadow font-semibold">
-            <a href="/" className="flex items-center hover:underline">
+            <Link href="/" className="flex items-center hover:underline">
               <svg className="w-6 h-6 mr-2 " fill="currentColor" viewBox="0 0 24 24">
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               </svg>
-            </a>
+            </Link>
             <span>/</span>
-            <a href="/products" className="hover:underline">Products</a>
+            <Link href="/products" className="hover:underline">Products</Link>
             <span>/</span>
             <span className="font-bold line-clamp-1">{product.name}</span>
           </nav>

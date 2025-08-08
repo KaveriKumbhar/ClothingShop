@@ -1,7 +1,88 @@
+// "use client";
+
+// import { useState, useEffect } from "react";
+// import { useRouter, useSearchParams } from "next/navigation";
+
+// export default function CheckoutPage() {
+//   const router = useRouter();
+//   const searchParams = useSearchParams();
+//   const [cart, setCart] = useState(null);
+//   const [singleProduct, setSingleProduct] = useState(null);
+//   const [loading, setLoading] = useState(true);
+//   const [orderComplete, setOrderComplete] = useState(false);
+//   const [quantity, setQuantity] = useState(1);
+//   const [shippingAddress, setShippingAddress] = useState({
+//     name: '',
+//     phone: '',
+//     address: '',
+//     city: '',
+//     state: '',
+//     zipCode: '',
+//     country: ''
+//   });
+
+//   // Check if this is a single product purchase
+//   const productSlug = searchParams.get('productSlug');
+//   const isSingleProduct = !!productSlug;
+
+//   useEffect(() => {
+//     if (isSingleProduct) {
+//       fetchSingleProduct();
+//     } else {
+//       fetchCart();
+//     }
+//   }, [isSingleProduct, productSlug]);
+
+//   const fetchSingleProduct = async () => {
+//     try {
+//       const res = await fetch(`/api/products/${productSlug}`);
+//       if (res.ok) {
+//         const product = await res.json();
+//         setSingleProduct(product);
+//         setQuantity(parseInt(searchParams.get('quantity')) || 1);
+//       } else {
+//         router.push('/products');
+//       }
+//     } catch (error) {
+//       console.error('Error fetching product:', error);
+//       router.push('/products');
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const fetchCart = async () => {
+//     try {
+//       const res = await fetch('/api/cart');
+//       if (res.ok) {
+//         const data = await res.json();
+//         setCart(data);
+//       } else {
+//         router.push('/cart');
+//       }
+//     } catch (error) {
+//       console.error('Error fetching cart:', error);
+//       router.push('/cart');
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const calculateTotal = () => {
+//     if (isSingleProduct && singleProduct) {
+//       return singleProduct.price * quantity;
+//     }
+//     if (!cart?.items) return 0;
+//     return cart.items.reduce((total, item) => {
+//       return total + (item.product.price * item.quantity);
+//     }, 0);
+//   };
+
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -21,19 +102,10 @@ export default function CheckoutPage() {
     country: ''
   });
 
-  // Check if this is a single product purchase
   const productSlug = searchParams.get('productSlug');
   const isSingleProduct = !!productSlug;
 
-  useEffect(() => {
-    if (isSingleProduct) {
-      fetchSingleProduct();
-    } else {
-      fetchCart();
-    }
-  }, [isSingleProduct, productSlug]);
-
-  const fetchSingleProduct = async () => {
+  const fetchSingleProduct = useCallback(async () => {
     try {
       const res = await fetch(`/api/products/${productSlug}`);
       if (res.ok) {
@@ -49,9 +121,9 @@ export default function CheckoutPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [productSlug, searchParams, router]);
 
-  const fetchCart = async () => {
+  const fetchCart = useCallback(async () => {
     try {
       const res = await fetch('/api/cart');
       if (res.ok) {
@@ -66,7 +138,15 @@ export default function CheckoutPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [router]);
+
+  useEffect(() => {
+    if (isSingleProduct) {
+      fetchSingleProduct();
+    } else {
+      fetchCart();
+    }
+  }, [isSingleProduct, fetchSingleProduct, fetchCart]);
 
   const calculateTotal = () => {
     if (isSingleProduct && singleProduct) {
@@ -74,7 +154,7 @@ export default function CheckoutPage() {
     }
     if (!cart?.items) return 0;
     return cart.items.reduce((total, item) => {
-      return total + (item.product.price * item.quantity);
+      return total + item.product.price * item.quantity;
     }, 0);
   };
 
@@ -254,9 +334,11 @@ export default function CheckoutPage() {
                     ₹{singleProduct.price} each × {quantity} quantity
                   </div>
                 </div>
-                <img 
+                <Image
                   src={singleProduct.image} 
                   alt={singleProduct.name}
+                  height={64}
+                  width={64}
                   className="w-16 h-16 object-cover rounded-lg ml-4"
                 />
               </div>
@@ -270,9 +352,11 @@ export default function CheckoutPage() {
                     <div className="font-semibold">₹{(item.product.price * item.quantity).toFixed(2)}</div>
                     <div className="text-gray-600 text-sm">₹{item.product.price} each × {item.quantity}</div>
                   </div>
-                  <img 
+                  <Image
                     src={item.product.image} 
                     alt={item.product.name}
+                    height={64}
+                    width={64}
                     className="w-16 h-16 object-cover rounded-lg ml-4"
                   />
                 </div>

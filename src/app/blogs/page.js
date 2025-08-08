@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState([]);
@@ -25,23 +26,24 @@ export default function BlogsPage() {
     <div className="min-h-screen bg-background">
       {/* Banner Section */}
       <section className="relative overflow-hidden pt-36 pb-36">
-        <img src="/blogs-banner.jpg" alt="Blogs Banner" className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
+        <Image src="/blogs-banner.jpg" alt="Blogs Banner" height={700} width={1200} className="absolute inset-0 w-full h-full object-cover object-center z-0" style={{ minHeight: '520px', maxHeight: '700px', opacity: 0.5 }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
         <div className="container-responsive relative z-20 py-36 flex flex-col items-center justify-center text-center">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-3 text-lg text-black mb-8 drop-shadow font-semibold">
-            <a href="/" className="flex items-center hover:underline">
+            <Link href="/" className="flex items-center hover:underline">
               <svg className="w-6 h-6 mr-2 " fill="currentColor" viewBox="0 0 24 24">
-                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
               </svg>
-            </a>
+            </Link>
             <span>/</span>
             <span className="font-bold">Blogs</span>
           </nav>
           <h1 className="text-5xl font-bold text-white mb-4 drop-shadow">FashionHub Blog</h1>
           <p className="text-lg text-white/90 max-w-2xl mx-auto mb-6 drop-shadow">
-            Explore the latest news, style tips, and stories from the world of fashion. Stay inspired and discover what's trending!
+            Explore the latest news, style tips, and stories from the world of fashion. Stay inspired and discover what&apos;s trending!
           </p>
+
         </div>
       </section>
 
@@ -67,7 +69,7 @@ export default function BlogsPage() {
               <Link key={blog.slug} href={`/blogs/${blog.slug}`} className="group block bg-card rounded-xl shadow hover:shadow-xl transition p-6 border border-border hover:border-primary/40">
                 {blog.image && (
                   <div className="w-full h-48 rounded-lg overflow-hidden mb-4">
-                    <img src={blog.image} alt={blog.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <Image src={blog.image} alt={blog.title} height={480} width={640} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                   </div>
                 )}
                 <h2 className="text-2xl font-semibold mb-2 line-clamp-1 group-hover:text-primary transition-colors">{blog.title}</h2>

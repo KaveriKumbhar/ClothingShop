@@ -34,7 +34,7 @@ export default function CartPage() {
 
   const updateQuantity = async (productId, newQuantity) => {
     setUpdating(prev => ({ ...prev, [productId]: true }));
-    
+
     try {
       const res = await fetch('/api/cart', {
         method: 'PUT',
@@ -102,7 +102,7 @@ export default function CartPage() {
             Review your items and proceed to checkout
           </p>
         </div>
-        
+
         {!cart?.items || cart.items.length === 0 ? (
           <div className="text-center py-16">
             <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
@@ -112,8 +112,9 @@ export default function CartPage() {
             </div>
             <h2 className="text-2xl font-semibold text-card-foreground mb-4">Your cart is empty</h2>
             <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-              Looks like you haven't added any items to your cart yet. Start shopping to discover amazing products!
+              Looks like you haven&apos;t added any items to your cart yet. Start shopping to discover amazing products!
             </p>
+
             <Link
               href="/"
               className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors btn-hover"
@@ -139,6 +140,8 @@ export default function CartPage() {
                           <Image
                             src={item.product.image?.startsWith('/') || item.product.image?.startsWith('http') ? item.product.image : '/default.jpg'}
                             alt={item.product.name}
+                            height={80}
+                            width={80}
                             fill
                             className="object-cover"
                           />
@@ -208,7 +211,7 @@ export default function CartPage() {
             <div className="lg:col-span-1">
               <div className="bg-card rounded-xl border border-border p-6 sticky top-24">
                 <h2 className="text-xl font-semibold text-card-foreground mb-6">Order Summary</h2>
-                
+
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Subtotal ({cart.items.length} items)</span>
